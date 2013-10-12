@@ -1,6 +1,6 @@
 package CarInsurance
 
-@grails.rest.Resource()
+@grails.rest.Resource(formats=['json', 'xml'])
 class CarModel {
 	
 	String name
