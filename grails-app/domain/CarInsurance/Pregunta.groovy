@@ -13,7 +13,7 @@ class Pregunta {
 	
 	int position
 	
-	Dictionary<String, Integer> typeRelation
+	Map<String,Integer> typeWeight
 	
 	public String toString() { return question }
 } 

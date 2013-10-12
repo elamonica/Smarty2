@@ -1,6 +1,6 @@
 package CarInsurance
 
-enum InsuranceType {
+public enum InsuranceType {
 
     todoRiesgo("TR","Todo Riesgo"), 
 	responsabilidadCivil("RC","Responsabilidad Civil"),
