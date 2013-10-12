@@ -10,9 +10,7 @@ class Pregunta {
 	
 	String question
 	
-	int position 
-	
-	//static hasMany = [possibleAnswers: RespuestaPosible]
+	int position
 	
 	public String toString() { return question }
 } 

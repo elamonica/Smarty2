@@ -1,4 +1,4 @@
-import smarty2.Book
+import CarInsurance.*
 
 class BootStrap {
 
@@ -31,8 +31,28 @@ class BootStrap {
 		def preg13 = new Pregunta(code:"13", question: "¿Buscás que tu seguro incluya cobertura adicional en gastos médicos por accidentes?", position: 13)
 		preg13.save(flush:true)
 		
-		new Book(title:"The Stand").save()
-		new Book(title:"The Shining").save()
+		def porshe = new CarBrand()
+		porshe.name = "Porshe"
+		porshe.models = new HashSet()
+		porshe.save(flush:true)
+		def bmw = new CarBrand()
+		bmw.name = "BMW"
+		bmw.models = new HashSet()
+		bmw.save(flush:true)
+		def ferrari = new CarBrand()
+		ferrari.name = "Ferrari"
+		ferrari.models = new HashSet()
+		ferrari.save(flush:true)
+		
+		def carrera = new CarModel()
+		carrera.name = "Carrera"
+		carrera.carBrand = porshe
+		carrera.save(flush: true)
+		
+		def testaRossa = new CarModel()
+		testaRossa.name = "Testa Rossa"
+		testaRossa.carBrand = ferrari
+		testaRossa.save(flush: true)
     }
     def destroy = {
     }
