@@ -1,5 +1,5 @@
-package CarInsurance
-;
+package CarInsurance;
+
 import javax.annotation.Resource;
 
 import grails.rest.*;

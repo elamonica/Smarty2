@@ -7,7 +7,9 @@ class UrlMappings {
             }
         }
 
-		"/books"(resources:"book")
+		"/carBrands"(resources:'carBrand') {
+			"/models"(resources:"carModel")		
+		}
         "/"(view:"/index")
         "500"(view:'/error')
 	}

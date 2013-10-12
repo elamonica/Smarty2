@@ -1,6 +1,6 @@
 package CarInsurance
 
-
+@grails.rest.Resource()
 class CarModel {
 	
 	String name
