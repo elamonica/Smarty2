@@ -1,5 +1,7 @@
 import org.junit.Before;
 
+import smarty2.InsuranceCompany
+import smarty2.Insurance
 import CarInsurance.*
 
 class BootStrap {
@@ -74,6 +76,70 @@ class BootStrap {
 		testaRossa.name = "Testa Rossa"
 		testaRossa.carBrand = ferrari
 		testaRossa.save(flush: true)
+		
+		
+		def laCaja = new InsuranceCompany(name: 'LaCaja', website: 'www.lacaja.com.ar')
+		laCaja.polizas = new HashSet()
+		laCaja.save(flush:true)
+		
+		def zurich = new InsuranceCompany(name: 'Zurich', website: 'www.zurich.com.ar')
+		zurich.polizas = new HashSet()
+		zurich.save(flush:true)
+		
+		def mapfre = new InsuranceCompany(name: 'Mapfre', website: 'www.mapfre.com.ar')
+		mapfre.polizas = new HashSet()
+		mapfre.save(flush:true)
+		
+		def polTR = new Insurance(insuranceType: InsuranceType.todoRiesgo, price: 500, details: 'Se puede pagar en 12 cuotas sin interés', description: InsuranceType.todoRiesgo.description())
+		polTR.company = laCaja
+		polTR.save(flush:true)
+		def polTC = new Insurance(insuranceType: InsuranceType.tercerosCompleto, price: 450, details: 'Se puede pagar en 12 cuotas sin interés', description: InsuranceType.tercerosCompleto.description())
+		polTC.company = laCaja
+		polTC.save(flush:true)
+		def polTCF = new Insurance(insuranceType: InsuranceType.tercerosCompletosFull, price: 470, details: 'Se puede pagar en 12 cuotas sin interés', description: InsuranceType.tercerosCompletosFull.description())
+		polTCF.company = laCaja
+		polTCF.save(flush:true)
+		def polTCFG = new Insurance(insuranceType: InsuranceType.tercerosCompletosFullGranizo, price: 550, details: 'Se puede pagar en 12 cuotas sin interés', description: InsuranceType.tercerosCompletosFullGranizo.description())
+		polTCFG.company = laCaja
+		polTCFG.save(flush:true)
+		def polR = new Insurance(insuranceType: InsuranceType.responsabilidadCivil, price: 350, details: 'Se puede pagar en 12 cuotas sin interés', description: InsuranceType.responsabilidadCivil.description())
+		polR.company = laCaja
+		polR.save(flush:true)
+		
+		
+		def polTR2 = new Insurance(insuranceType: InsuranceType.todoRiesgo, price: 600, details: 'Se puede pagar en 12 cuotas sin interés', description: InsuranceType.todoRiesgo.description())
+		polTR2.company = zurich
+		polTR2.save(flush:true)
+		def polTC2 = new Insurance(insuranceType: InsuranceType.tercerosCompleto, price: 350, details: 'Se puede pagar en 12 cuotas sin interés', description: InsuranceType.tercerosCompleto.description())
+		polTC2.company = zurich
+		polTC2.save(flush:true)
+		def polTCF2 = new Insurance(insuranceType: InsuranceType.tercerosCompletosFull, price: 370, details: 'Se puede pagar en 12 cuotas sin interés', description: InsuranceType.tercerosCompletosFull.description())
+		polTCF2.company = zurich
+		polTCF2.save(flush:true)
+		def polTCFG2 = new Insurance(insuranceType: InsuranceType.tercerosCompletosFullGranizo, price: 350, details: 'Se puede pagar en 12 cuotas sin interés', description: InsuranceType.tercerosCompletosFullGranizo.description())
+		polTCFG2.company = zurich
+		polTCFG2.save(flush:true)
+		def polR2 = new Insurance(insuranceType: InsuranceType.responsabilidadCivil, price: 250, details: 'Se puede pagar en 12 cuotas sin interés', description: InsuranceType.responsabilidadCivil.description())
+		polR2.company = zurich
+		polR2.save(flush:true)	
+		
+		
+		def polTR3 = new Insurance(insuranceType: InsuranceType.todoRiesgo, price: 550, details: 'Se puede pagar en 12 cuotas sin interés', description: InsuranceType.todoRiesgo.description())
+		polTR3.company = mapfre
+		polTR3.save(flush:true)
+		def polTC3 = new Insurance(insuranceType: InsuranceType.tercerosCompleto, price: 400, details: 'Se puede pagar en 12 cuotas sin interés', description: InsuranceType.tercerosCompleto.description())
+		polTC3.company = mapfre
+		polTC3.save(flush:true)
+		def polTCF3 = new Insurance(insuranceType: InsuranceType.tercerosCompletosFull, price: 390, details: 'Se puede pagar en 12 cuotas sin interés', description: InsuranceType.tercerosCompletosFull.description())
+		polTCF3.company = mapfre
+		polTCF3.save(flush:true)
+		def polTCFG3 = new Insurance(insuranceType: InsuranceType.tercerosCompletosFullGranizo, price: 360, details: 'Se puede pagar en 12 cuotas sin interés', description: InsuranceType.tercerosCompletosFullGranizo.description())
+		polTCFG3.company = mapfre
+		polTCFG3.save(flush:true)
+		def polR3 = new Insurance(insuranceType: InsuranceType.responsabilidadCivil, price: 150, details: 'Se puede pagar en 12 cuotas sin interés', description: InsuranceType.responsabilidadCivil.description())
+		polR3.company = mapfre
+		polR3.save(flush:true)
+		
     }
     def destroy = {
     }
