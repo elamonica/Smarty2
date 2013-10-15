@@ -78,15 +78,15 @@ class BootStrap {
 		testaRossa.save(flush: true)
 		
 		
-		def laCaja = new InsuranceCompany(name: 'LaCaja', website: 'www.lacaja.com.ar')
+		def laCaja = new InsuranceCompany(name: 'LaCaja', website: 'http://www.lacaja.com.ar')
 		laCaja.polizas = new HashSet()
 		laCaja.save(flush:true)
 		
-		def zurich = new InsuranceCompany(name: 'Zurich', website: 'www.zurich.com.ar')
+		def zurich = new InsuranceCompany(name: 'Zurich', website: 'http://www.zurich.com.ar')
 		zurich.polizas = new HashSet()
 		zurich.save(flush:true)
 		
-		def mapfre = new InsuranceCompany(name: 'Mapfre', website: 'www.mapfre.com.ar')
+		def mapfre = new InsuranceCompany(name: 'Mapfre', website: 'http://www.mapfre.com.ar')
 		mapfre.polizas = new HashSet()
 		mapfre.save(flush:true)
 		

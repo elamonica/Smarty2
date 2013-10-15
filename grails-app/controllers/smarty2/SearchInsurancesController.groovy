@@ -1,5 +1,7 @@
 package smarty2
 
+import javax.naming.directory.SearchResult;
+
 import CarInsurance.InsuranceType;
 import CarInsurance.Pregunta;
 
@@ -28,12 +30,12 @@ class SearchInsurancesController {
 			def aQuestion = Pregunta.findById(aQuestionId)
 			
 			InsuranceType.values().each {
-				typeWeightResult[it.code()] = typeWeightResult[it.code()] + aQuestion.typeWeight[it.code().toLowerCase()]
+				typeWeightResult[it.code().toLowerCase()] = typeWeightResult[it.code().toLowerCase()] + aQuestion.typeWeight[it.code().toLowerCase()]
 			}
 		}
 		
-		def winnerType = InsuranceType.responsabilidadCivil.code()
-		def winnerValue = typeWeightResult[InsuranceType.responsabilidadCivil.code()]
+		def winnerType = InsuranceType.responsabilidadCivil.code().toLowerCase()
+		def winnerValue = typeWeightResult[InsuranceType.responsabilidadCivil.code().toLowerCase()]
 		
 		typeWeightResult.each { key, value ->
 			if (typeWeightResult[key] > winnerValue){
@@ -42,14 +44,20 @@ class SearchInsurancesController {
 			}	
 		}
 		 
-		
-		def insurances = List
+		def searchResult = []
 		InsuranceCompany.all.each {  
-			def winnerPoliza = it.polizas.find { it.insuranceType.code() == winnerType }
+			def insurances = new ArrayList<Insurance>()
+			def winnerPoliza = it.polizas.find { it.insuranceType.code().toLowerCase() == winnerType }
 			insurances.add(winnerPoliza)
+			
+			def companyInsuranceResult = ['empresa': it, 'alternativas': insurances]
+			searchResult.add(companyInsuranceResult)
 		}
 		
-		render insurances as JSON
+		def winnerInsuranceType = InsuranceType.values().find { it.code().equalsIgnoreCase(winnerType) }
 		
+		def result = ['tiposPoliza': winnerInsuranceType, 'results': searchResult]
+		
+		render result as JSON
 	}
 }

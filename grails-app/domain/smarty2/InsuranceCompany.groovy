@@ -9,4 +9,9 @@ class InsuranceCompany {
 
     static constraints = {
     }
+	
+	public String toString()
+	{
+		return name
+	}
 }
