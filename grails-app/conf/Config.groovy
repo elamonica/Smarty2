@@ -90,7 +90,7 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-        TODO: grails.serverURL = "http://secure-everglades-3448.herokuapp.com"
+        grails.serverURL = "http://secure-everglades-3448.herokuapp.com"
     }
 }
 
