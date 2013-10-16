@@ -22,7 +22,11 @@ environments {
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+			driverClassName = "org.postgresql.Driver"
+			dialect = org.hibernate.dialect.PostgreSQLDialect
+			url = "jdbc:postgresql://localhost/smarty"
+			username: "postgres"
+			password: "FF32936369"
         }
     }
     production {
