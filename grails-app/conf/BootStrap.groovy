@@ -16,11 +16,18 @@ class BootStrap {
 		String tcf = InsuranceType.tercerosCompletosFull.code()
 		String tcfg = InsuranceType.tercerosCompletosFullGranizo.code()
 		
+		
+		
 		if (!Pregunta.findByCode("1")){
 			def preg1 = new Pregunta(code:"1", question: "¿Cobertura contra terceros?", position: 1)
 			preg1.typeWeight = [tr:'0', rc: '1', tc:'4', tcf: '3', tcfg: '2']
 			preg1.save(flush:true)
 		}
+		else
+		{
+			return
+		}
+		
 		if (!Pregunta.findByCode("2")){
 			def preg2 = new Pregunta(code:"2", question: "¿Robo total?", position: 2)
 			preg2.typeWeight = [tr:'2', rc: '2', tc:'2', tcf: '1', tcfg: '0']
@@ -116,9 +123,7 @@ class BootStrap {
 			testaRossa.save(flush: true)
 		}
 		
-		if (InsuranceCompany.findByName("LaCaja")){
-			return
-		}
+		
 		
 		def laCaja = new InsuranceCompany(name: 'LaCaja', website: 'http://www.lacaja.com.ar')
 		laCaja.polizas = new HashSet()
