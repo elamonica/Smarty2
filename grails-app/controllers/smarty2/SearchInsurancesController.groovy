@@ -54,6 +54,8 @@ class SearchInsurancesController {
 			searchResult.add(companyInsuranceResult)
 		}
 		
+		searchResult = searchResult.sort { a, b -> a.alternativas.first().price <= b.alternativas.first().price?-1:1 }
+		
 		def winnerInsuranceType = InsuranceType.values().find { it.code().equalsIgnoreCase(winnerType) }
 		
 		def result = ['tiposPoliza': winnerInsuranceType, 'results': searchResult]
