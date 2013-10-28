@@ -1,3 +1,5 @@
+import grails.converters.JSON;
+
 import org.junit.Before;
 
 import smarty2.InsuranceCompany
@@ -17,6 +19,15 @@ class BootStrap {
 		String tcfg = InsuranceType.tercerosCompletosFullGranizo.code()
 		
 		
+		JSON.registerObjectMarshaller(InsuranceType) {
+			def result = [:]
+			def props = ['code', 'description']
+			props.each { prop ->
+				result[prop] = it."$prop"
+			}
+			result
+		}
+		
 		
 		if (!Pregunta.findByCode("1")){
 			def preg1 = new Pregunta(code:"1", question: "¿Cobertura contra terceros?", position: 1)
@@ -25,6 +36,7 @@ class BootStrap {
 		}
 		else
 		{
+			// no cargo nada porque asumo que la pregunta 1 si esta cargada, esta cargado todo el resto
 			return
 		}
 		
