@@ -65,8 +65,7 @@ grails.project.dependency.resolution = {
 		compile ':heroku:1.0.1'
 		compile ':cloud-support:1.0.8'
 		compile ":mail:1.0.1"
-		compile ":quartz:1.0-RC13"		
-		compile ":executor:0.3"
+		compile ":quartz:1.0-RC13"
 		
 		// plugins needed at runtime but not for compilation
 		runtime ":hibernate4:4.1.11.1" //":hibernate:3.6.10.1" // or ":hibernate4:4.1.11.1"

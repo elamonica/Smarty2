@@ -19,14 +19,17 @@ class SearchInsurancesController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
 	def search = {
+    	def email = params.email
     	def mode = params.mode  // 'e' para todas las empresas y 'p' para todas las polizas
 
+		def url = "http://" + "www.servicioscomparados.com/?" + request.queryString
+		
 		task {
 			if (mode != 'p'){		
 				sendMail {
-						to params.email
+						to email
 						subject "Gracias por utilizar Servicios Comparados"
-						html '<b>Servicios Comparados</b> te mantiene informado.\n Puedes volver a consultarnos por <a href="http://www.servicioscomparados.com">aqui</a> '
+						html "<b>Servicios Comparados</b> te mantiene informado.\n Puedes volver a consultarnos por <a href=" + url + ">aqui</a> "
 				  }
 			}
     	}
@@ -34,7 +37,6 @@ class SearchInsurancesController {
 		def carModel = params.carModelId
 		def questionsParam = params.questions
 		def questions = questionsParam.split(',')
-		def email = params.email
 		
 		def typeWeightResult= [:]
 		

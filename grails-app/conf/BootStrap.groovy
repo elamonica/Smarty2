@@ -10,8 +10,6 @@ class BootStrap {
 
     def init = { servletContext ->
 		
-		
-		
 		String tr = InsuranceType.todoRiesgo.code()
 		String rc = InsuranceType.responsabilidadCivil.code()
 		String tc = InsuranceType.tercerosCompleto.code()
