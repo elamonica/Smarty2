@@ -10,6 +10,14 @@ class BootStrap {
 
     def init = { servletContext ->
 		
+		
+		MMC.all.each {
+			def ma = new CarBrand(name: it.marca)
+			ma.save(flush:true)
+			def mo = new CarModel(name: it.modelo, carBrand: ma, code: it.cod)
+			mo.save(flush:true)
+		}
+		
 		String tr = InsuranceType.todoRiesgo.code()
 		String rc = InsuranceType.responsabilidadCivil.code()
 		String tc = InsuranceType.tercerosCompleto.code()
@@ -198,12 +206,7 @@ class BootStrap {
 		polR3.save(flush:true)
 		
 		
-		MMC.all.each {
-			def ma = new CarBrand(name: it.marca)
-			ma.save()
-			def mo = new CarModel(name: it.modelo, carBrand: ma, code: it.cod)
-			mo.save()
-		}
+		
 		
     }
     def destroy = {
