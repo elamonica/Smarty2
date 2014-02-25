@@ -197,6 +197,7 @@ class BootStrap {
 		polR3.company = mapfre
 		polR3.save(flush:true)
 		
+		
     }
     def destroy = {
     }

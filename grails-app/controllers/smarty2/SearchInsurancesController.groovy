@@ -23,6 +23,10 @@ class SearchInsurancesController {
     	def mode = params.mode  // 'e' para todas las empresas y 'p' para todas las polizas
 
 		def url = "http://" + "www.servicioscomparados.com/?" + request.queryString
+
+		// cambiar en el html el nombre de la query string de los params
+		// ver que servicioscomparados@gmail.com se bloquea
+		// evaluar de configurar el mail propio 
 		
 		task {
 			if (mode != 'p'){		

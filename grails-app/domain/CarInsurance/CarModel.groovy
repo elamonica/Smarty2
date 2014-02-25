@@ -4,6 +4,7 @@ package CarInsurance
 class CarModel {
 	
 	String name
+	String code
 	
 	static belongsTo = [carBrand: CarBrand]
 	
