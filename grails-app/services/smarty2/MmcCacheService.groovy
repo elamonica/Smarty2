@@ -9,31 +9,42 @@ class MmcCacheService {
 
 	def brands = []
 	def models = []
-    
+    def modelsByBrandId = [:]
+	
 	def initialize() {
 		def pi = 0
 		for(int i = 500; pi < MMC.count/2; i += 500){
 			MMC.list(max:i, ofset: pi).eachWithIndex { obj, index ->
-				def ma = new CarBrand(name: obj.marca)
-				ma.id = index + pi
-				brands.add(ma)
-				def mo = new CarModel(name: obj.modelo, carBrand: ma, code: obj.cod)
+				def bandPreexistente = brands.find { it.name == obj.marca}
+				if (bandPreexistente == null){
+					def ma = new CarBrand(name: obj.marca)
+					ma.id = index + pi
+					bandPreexistente = ma
+					
+					brands.add(ma)
+					modelsByBrandId["a" + ma.id.toString()] = []
+				}
+				
+				
+				def mo = new CarModel(name: obj.modelo, carBrand: bandPreexistente, code: obj.cod)
 				mo.id = index + pi
 				models.add(mo)
+				modelsByBrandId["a" + bandPreexistente.id.toString()].add(mo)
 			}
 			pi = i
 		}
-		brands = brands.unique()
 	}
 	
 	def carBrandsById(idBrand) {
-		def r = []
-		models.each {
-			if (it.carBrand.id.toString() == idBrand.toString())
-				r.add(it)
-		}
+		//def r = []
+		//models.each {
+		//	if (it.carBrand.id.toString() == idBrand.toString())
+			//	r.add(it)
+		//}
 		
-		return r
+		//return r
+		
+		return modelsByBrandId["a" + idBrand.toString()]
 	}
 	
 	
