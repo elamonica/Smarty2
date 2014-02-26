@@ -12,7 +12,7 @@ class MmcCacheService {
     
 	def initialize() {
 		def pi = 0
-		for(int i = 500; pi < MMC.count; i += 500){
+		for(int i = 500; pi < MMC.count/2; i += 500){
 			MMC.list(max:i, ofset: pi).eachWithIndex { obj, index ->
 				def ma = new CarBrand(name: obj.marca)
 				ma.id = index + pi
