@@ -1,22 +1,24 @@
 import grails.converters.JSON;
 
+
 import org.junit.Before;
 
 import smarty2.InsuranceCompany
 import smarty2.Insurance
+import smarty2.MmcCacheService;
 import CarInsurance.*
 
 class BootStrap {
 
+	def mmcCacheService
+	
     def init = { servletContext ->
 		
+		//new MMC(marca:"BMW", modelo: "S3", cod: "1231").save(flush:true)
+		//new MMC(marca:"Fiat", modelo: "125", cod: "1331").save(flush:true)
+		//new MMC(marca:"Ferrari", modelo: "Testarosa", cod: "1561").save(flush:true)
 		
-		MMC.all.each {
-			def ma = new CarBrand(name: it.marca)
-			ma.save(flush:true)
-			def mo = new CarModel(name: it.modelo, carBrand: ma, code: it.cod)
-			mo.save(flush:true)
-		}
+		mmcCacheService.initialize()
 		
 		String tr = InsuranceType.todoRiesgo.code()
 		String rc = InsuranceType.responsabilidadCivil.code()
